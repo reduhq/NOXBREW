@@ -1,0 +1,37 @@
+
+.card{
+    padding: .5rem 1rem;
+    display: flex;
+    background-color: #121B22;
+    border-radius: .5rem;
+}
+
+.card__info{
+    color: #fff;
+}
+
+.info-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.info-description{
+    /* color: #616161; */
+    color: #bbb;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.info-price{
+    font-size: 2rem;
+}
+
+.info-price span{
+    color: #00FFD1;
+}
+
+.card__image img{
+    border-radius: .5rem;
+}

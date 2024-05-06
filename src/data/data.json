@@ -1,0 +1,123 @@
+{
+    "Espresso":[
+        {
+            "nombre": "Espresso simple",
+            "precio": 4.99,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Doble espresso",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Ristretto",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Lungo",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Americano",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Macchiato",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        }
+    ],
+    "Con leche":[
+        {
+            "nombre": "Cappuccino",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Latte",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Mocha",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Café con leche",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Flat white",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Cortado",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        }
+    ],
+    "Filtrado":[
+        {
+            "nombre": "V60",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Chemex",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Prensa francesa",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "AeroPress",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Cold brew",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        }
+    ],
+    "Especiales":[
+        {
+            "nombre": "café irlandés",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Carajillo",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Dalgona coffee",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Vietnamita",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        },
+        {
+            "nombre": "Turco",
+            "precio": 5.00,
+            "imagen": "img1.png"
+        }
+    ],
+    "Frappe":[
+        
+    ]
+}

@@ -1,0 +1,58 @@
+
+.h2{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: .5rem;
+    text-align: center;
+}
+
+.search_input{
+    background-color: #121B22;
+    margin: auto;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    max-width: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_input div{
+    margin-left: 1rem;
+}
+
+.search_input input{
+    width: 100%;
+    background-color: transparent;
+    padding: .5rem 1rem;
+    color: #bbb;
+}
+
+.search_input input:focus{
+    outline: none;
+}
+
+.categories{
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.categories h3{
+    color: #fff;
+    white-space: nowrap;
+}
+
+.products{
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: .5rem;
+}
+
+/* .products .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

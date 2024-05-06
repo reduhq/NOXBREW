@@ -1,0 +1,41 @@
+
+.navbar{
+    background: linear-gradient(to bottom, #000 0%, #0C1013 100%);
+}
+
+.navbar div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div_logo{
+    display: flex;
+    align-items: center;
+    padding: .5rem 0;
+    color: #fff;
+}
+
+.div_logo p{
+    text-decoration: underline;
+}
+
+.logo{
+    width: 4rem;
+    border-radius: 5rem;
+    margin-right: .5rem;
+}
+
+.navbar .user{
+    border: 1px solid #fff;
+    border-radius: .5rem;
+    padding: .2rem;
+}
+
+
+@media (max-width: 500px) {
+    .logo{
+        width: 3rem;
+    }
+}
+
