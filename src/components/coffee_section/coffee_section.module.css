@@ -1,0 +1,32 @@
+
+.categories{
+    color: var(--white);
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.categories--active{
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.categories h3{
+    white-space: nowrap;
+    padding: 0 .5rem;
+    cursor: pointer;
+}
+
+.products{
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: .5rem;
+}
+
+/* .products .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

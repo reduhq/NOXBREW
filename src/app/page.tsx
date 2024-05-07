@@ -3,6 +3,7 @@ import {IconSearch} from "@tabler/icons-react"
 import styles from './index.module.css'
 import coffee_data from "./../data/data.json"
 import { Product_card } from "@/components/product_card/Product_card";
+import { CoffeeSection } from "@/components/coffee_section/CoffeeSection";
 
 // interface Bebida{
 //   nombre:string;
@@ -35,29 +36,7 @@ export default function Home() {
           </div>
           <input type="search" name="search_coffee" id="search_coffee" placeholder="Busca tu café"/>
         </div>
-        {/* categories */}
-        <div className={`${styles.categories}`}>
-          {
-            Object.keys(coffee_data).map(key =>(
-              <h3 key={key}>{key}</h3>
-            ))
-          }
-        </div>
-        {/* Select your coffee */}
-        <div className={styles.products}>
-          {
-            Object.values(coffee_data).map(v => (
-              v.map(val => (
-                  <Product_card
-                  key={val.nombre}
-                    product_name={val.nombre}
-                    price={val.precio}
-                    image={val.imagen}
-                  />
-              ))
-            ))
-          }
-        </div>
+        <CoffeeSection/>
 
       </div>
     </>
