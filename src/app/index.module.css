@@ -7,7 +7,7 @@
 }
 
 .search_input{
-    background-color: #121B22;
+    background-color:var(--tertiary-color);
     margin: auto;
     border-radius: 1rem;
     margin-top: 1rem;
@@ -25,7 +25,7 @@
     width: 100%;
     background-color: transparent;
     padding: .5rem 1rem;
-    color: #bbb;
+    color: #eee;
 }
 
 .search_input input:focus{
@@ -40,7 +40,7 @@
 }
 
 .categories h3{
-    color: #fff;
+    color: var(--white);
     white-space: nowrap;
 }
 

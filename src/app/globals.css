@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  /* variables */
+  --primary-color: #0C1013;
+  --secondary-color: #00FFD1;
+  --tertiary-color: #121B22;
+
+  --white: #fff;
+  --black: #000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +25,11 @@
 }
 
 body {
-    background-color: #0C1013;
+    background-color: var(--primary-color);
 }
 
 h2{
-  color: #fff;
+  color: var(--white);
 }
 
 /* APP STYLES */
