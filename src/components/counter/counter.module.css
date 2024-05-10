@@ -1,0 +1,31 @@
+
+.counter{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.counter__button{
+    background-color: var(--secondary-color);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tertiary-color);
+    font-weight: bold;
+    border-radius: .5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.counter__number{
+    height: 2rem;
+    width: 3rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}

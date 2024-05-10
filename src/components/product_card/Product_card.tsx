@@ -1,3 +1,4 @@
+import Link from "next/link"
 import styles from "./product_card.module.css"
 import Image from "next/image"
 
@@ -9,7 +10,7 @@ interface Props{
 
 export const Product_card = ({product_name, price, image}:Props) => {
     return (
-        <div className={styles.card}>
+        <Link href={`/${product_name.toLowerCase().replace(/ /g, '-')}`} className={styles.card}>
             <div className={styles.card__info}>
                 <h2 className={styles['info-title']}>{product_name}</h2>
                 <p className={styles['info-description']}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et dignissimos cupiditate consequatur eligendi dolorem, dicta nobis ullam nesciunt mollitia. Iure repellendus molestias similique quasi quae ullam illum enim commodi maxime.</p>
@@ -23,6 +24,6 @@ export const Product_card = ({product_name, price, image}:Props) => {
                     height={500}
                 />
             </div>
-        </div>
+        </Link>
     )
 }
