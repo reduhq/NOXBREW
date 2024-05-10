@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import "./globals.css";
 import { poppins } from "@/fonts";
+import { Navbar } from "@/components/navbar/Navbar";
+import { SecondaryNavbar } from "@/components/secondary_navbar/SecondaryNavbar";
+// import { relative } from "path";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Navbar/> 
+        <SecondaryNavbar/>
+        {children}
+      </body>
     </html>
   );
 }

@@ -27,7 +27,6 @@ export default function Home() {
   // console.log(categories)
   return (
     <>
-      <Navbar/>
       <div className={`container ${styles.main}`}>
         <h2 className={styles.h2}>Disfruta de tu café favorito sin moverte de casa.</h2>
         <div className={styles.search_input}>
