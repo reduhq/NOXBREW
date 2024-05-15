@@ -19,3 +19,7 @@
     height: 2rem;
     width: 2rem;
 }
+
+.navbar__icon--active{
+    color: red;
+}
