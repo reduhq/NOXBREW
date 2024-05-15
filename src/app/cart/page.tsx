@@ -1,5 +1,15 @@
+'use client'
 
+import { useCartStore } from '@/store/cart'
+import styles from './cart.module.css'
 
 export default function Page(){
-    return <div className="text-red-800">Ccarrito</div>
+    const {cart} = useCartStore()
+    console.log(cart)
+    
+    return(
+        <div className={`container ${styles.page}`}>
+            <h2 className={styles.page__title}>carrito</h2>
+        </div>
+    )
 }

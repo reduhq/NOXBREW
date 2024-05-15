@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import styles from './coffee_details.module.css'
 import { Counter } from "@/components/counter/Counter";
+import { useCartStore } from "@/store/cart";
 
 interface coffee_model{
     nombre:string
@@ -17,10 +18,12 @@ interface coffee_model{
 export default function Page({ params }: { params: { coffee_name: string } }) {
     const [coffee, setCoffee] = useState<coffee_model|null>(null)
     const [count, setCount] = useState(0)
+    const {cart, setCart} = useCartStore()
+
+
     useEffect(()=>{
         Object.values(coffee_data).map(val =>{
             val.map(c => {
-                console.log(c.nombre.toLowerCase().replace('-', ' '), c.nombre.toLowerCase(), c.nombre.toLowerCase() === params.coffee_name.toLowerCase().replace('-', ' '))
                 if(c.nombre.toLowerCase() === params.coffee_name.toLowerCase().replace('-', ' ')){
                     setCoffee(c)
                     return
@@ -28,6 +31,27 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
             })
         })
     },[])
+
+    useEffect(()=>{
+        console.log(cart)
+    }, [cart])
+
+    const addToCart = () =>{
+        Object.values(coffee_data).map(values =>{
+            values.map(c =>{
+                if(c.nombre == coffee?.nombre){
+                    const buyCoffee = {
+                        nombre:c.nombre,
+                        precio:c.precio,
+                        imagen:c.imagen,
+                        cantidad: count
+                    }
+                    setCart([...cart, buyCoffee])
+                    return
+                }
+            })
+        })
+    }
     
     return(
         <main className={`container ${styles.main}`}>
@@ -43,7 +67,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                     setCount={setCount}
                 />
             </div>
-            <button className={styles.button}>Agregar al carrito</button>
+            <button onClick={addToCart} className={styles.button}>Agregar al carrito</button>
         </main>
     )
 }
