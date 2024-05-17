@@ -4,6 +4,7 @@ import "./globals.css";
 import { poppins } from "@/fonts";
 import { Navbar } from "@/components/navbar/Navbar";
 import { SecondaryNavbar } from "@/components/secondary_navbar/SecondaryNavbar";
+import { Footer } from "@/components/footer/Footer";
 // import { relative } from "path";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Navbar/> 
         <SecondaryNavbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
