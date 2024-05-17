@@ -1,7 +1,7 @@
 import { useCartStore } from "@/store/cart"
 import Image from "next/image"
 import { Counter } from "../counter/Counter"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import styles from './cart_item.module.css'
 
@@ -19,6 +19,23 @@ interface Props{
 
 export const CartItem = ({coffee}:Props) => {
     const [count, setCount] = useState(coffee.cantidad)
+    const {cart, setCart} = useCartStore()
+
+    useEffect(()=>{
+        if(count != coffee.cantidad){
+            console.log(count)
+            const index = cart.findIndex(item => item.nombre == coffee.nombre)
+            const item = cart[index]
+            const new_item = {...item}
+            new_item.cantidad = count
+            //
+            const new_data = [...cart]
+            new_data[index] = new_item
+            setCart(new_data)
+            coffee.cantidad= count
+        }
+    }, [count])
+
     return (
         <div className={styles.cart_item}>
             <div className={styles.cart_item__image}>

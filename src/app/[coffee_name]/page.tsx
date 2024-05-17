@@ -17,7 +17,7 @@ interface coffee_model{
 
 export default function Page({ params }: { params: { coffee_name: string } }) {
     const [coffee, setCoffee] = useState<coffee_model|null>(null)
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
     const {cart, setCart} = useCartStore()
 
 

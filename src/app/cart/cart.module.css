@@ -1,4 +1,7 @@
 
+.page{
+    color: var(--white);
+}
 
 .page__title{
     text-transform: uppercase;
@@ -12,5 +15,43 @@
     gap: 1rem;
     /* align-items: center; */
     max-width: 30rem;
-    margin: auto;
+    margin: .5rem auto;
+}
+
+.pay{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pay__price{
+    flex-grow: 1;
+    text-align: center;
+}
+
+.pay__price_title{
+    color: rgba(255, 255, 255, .5);
+}
+
+.pay__price_amount{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.pay__price_amount span{
+    color: var(--secondary-color);
+}
+
+.pay__button_div{
+    flex-grow: 3;
+}
+
+.pay__button{
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.5rem;
 }
