@@ -47,7 +47,7 @@ export const CartItem = ({coffee}:Props) => {
                     count={count}
                     setCount={setCount}
                 />
-                <h3 className={styles.info__price}><span>Total $</span>{coffee.precio}</h3>
+                <h3 className={styles.info__price}><span>Total $</span>{coffee.precio.toFixed(2)}</h3>
             </div>
         </div>
     )

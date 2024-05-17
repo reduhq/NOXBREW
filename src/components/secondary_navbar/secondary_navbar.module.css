@@ -20,6 +20,11 @@
     width: 2rem;
 }
 
+.navbar__icon svg{
+    width: 100%;
+    height: auto;
+}
+
 .navbar__icon--active{
     color: red;
 }

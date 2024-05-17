@@ -10,7 +10,6 @@ export default function Page(){
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        console.log("estoy entrando aquiiiiiiiii")
         let t = 0
         cart.map(c =>{
             t+=(c.cantidad * c.precio)

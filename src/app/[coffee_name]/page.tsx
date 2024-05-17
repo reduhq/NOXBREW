@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import styles from './coffee_details.module.css'
 import { Counter } from "@/components/counter/Counter";
 import { useCartStore } from "@/store/cart";
+import {redirect} from 'next/navigation'
 
 interface coffee_model{
     nombre:string
@@ -33,7 +34,8 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
     },[])
 
     useEffect(()=>{
-        console.log(cart)
+        if(cart.length == 0) return
+        redirect("/cart")
     }, [cart])
 
     const addToCart = () =>{

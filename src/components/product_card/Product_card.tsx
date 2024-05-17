@@ -14,7 +14,7 @@ export const Product_card = ({product_name, price, image}:Props) => {
             <div className={styles.card__info}>
                 <h2 className={styles['info-title']}>{product_name}</h2>
                 <p className={styles['info-description']}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et dignissimos cupiditate consequatur eligendi dolorem, dicta nobis ullam nesciunt mollitia. Iure repellendus molestias similique quasi quae ullam illum enim commodi maxime.</p>
-                <h3 className={styles['info-price']}><span>$</span>{price}</h3>
+                <h3 className={styles['info-price']}><span>$</span>{price.toFixed(2)}</h3>
             </div>
             <div className={styles.card__image}>
                 <Image
