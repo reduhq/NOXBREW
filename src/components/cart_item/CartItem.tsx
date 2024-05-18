@@ -23,7 +23,6 @@ export const CartItem = ({coffee}:Props) => {
 
     useEffect(()=>{
         if(count != coffee.cantidad){
-            console.log(count)
             const index = cart.findIndex(item => item.nombre == coffee.nombre)
             const item = cart[index]
             const new_item = {...item}
@@ -47,7 +46,7 @@ export const CartItem = ({coffee}:Props) => {
                     count={count}
                     setCount={setCount}
                 />
-                <h3 className={styles.info__price}><span>Total $</span>{coffee.precio.toFixed(2)}</h3>
+                <h3 className={styles.info__price}><span>Total $</span>{(coffee.precio * count).toFixed(2)}</h3>
             </div>
         </div>
     )

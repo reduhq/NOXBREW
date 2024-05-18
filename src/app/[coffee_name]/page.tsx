@@ -3,12 +3,14 @@
 import Image from "next/image";
 
 import coffee_data from '@/data/data.json'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from './coffee_details.module.css'
 import { Counter } from "@/components/counter/Counter";
 import { useCartStore } from "@/store/cart";
 import {redirect} from 'next/navigation'
+import { initializeTraceState } from "next/dist/trace";
+import Link from "next/link";
 
 interface coffee_model{
     nombre:string
@@ -33,10 +35,12 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
         })
     },[])
 
-    useEffect(()=>{
-        if(cart.length == 0) return
-        redirect("/cart")
-    }, [cart])
+    // useEffect(()=>{
+    //     console.log(click)
+    //     if(click){
+    //         redirect("/cart")
+    //     }
+    // }, [cart])
 
     const addToCart = () =>{
         Object.values(coffee_data).map(values =>{
@@ -49,7 +53,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                         cantidad: count
                     }
                     setCart([...cart, buyCoffee])
-                    return
+                    // return 
                 }
             })
         })
@@ -57,7 +61,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
     
     return(
         <main className={`container ${styles.main}`}>
-            <Image src={`/${coffee?.imagen as string}`} alt={coffee?.nombre as string} width={500} height={500}/>
+            <Image src={`/${coffee?.imagen as string}`} alt={coffee?.nombre?coffee.nombre:""} width={500} height={500}/>
             <h1 className={styles.title}>{coffee?.nombre as string}</h1>
             <p className={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis officia eos ducimus, a ipsam dolorum deserunt quisquam alias provident at. Voluptatem tempore ut ipsa molestiae aliquam exercitationem, harum quia dolorum.</p>
             <div className={styles.buy}>
@@ -69,7 +73,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                     setCount={setCount}
                 />
             </div>
-            <button onClick={addToCart} className={styles.button}>Agregar al carrito</button>
+            <button onClick={addToCart} className={styles.button}><Link href={"/cart"}>Agregar al carrito</Link></button>
         </main>
     )
 }
