@@ -26,6 +26,7 @@
 
 body {
     background-color: var(--primary-color);
+    color: var(--white);
 }
 
 h2{
@@ -37,4 +38,41 @@ h2{
   max-width: 60rem;
   margin: auto;
   padding: 0 .5rem;
+}
+
+form{
+  max-width: 40rem;
+  margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* background-color: red; */
+}
+
+form div{
+  display: flex;
+  flex-direction: column;
+}
+
+form div label{
+  font-weight: bold;
+}
+
+form div input{
+  background-color: transparent;
+  border-radius: .5rem;
+  border: 1px solid var(--white);
+  padding: .5rem 1rem;
+}
+
+form div input:focus{
+  outline: none;
+}
+
+form button{
+  background-color: var(--tertiary-color);
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-weight: bold;
 }
