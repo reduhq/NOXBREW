@@ -8,8 +8,10 @@ export const Navbar = () => {
         <div className={styles.navbar}>
             <div className="container">
                 <div className={styles.div_logo}>
-                    <Image src="/LOGO.svg" alt="noxbrew_logo" className={styles.logo} width={1} height={1}/>
-                    <p>NOXBREW</p>
+                    <Link href={"/"}>
+                        <Image src="/LOGO.svg" alt="noxbrew_logo" className={styles.logo} width={1} height={1}/>
+                    </Link>
+                    <Link href={"/"}>NOXBREW</Link>
                 </div>
                 <Link href={'/login'} className={styles.user}>
                     <IconUser color="#fff"/>
