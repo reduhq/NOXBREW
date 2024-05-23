@@ -1,4 +1,10 @@
 
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 .link{
     color: var(--secondary-color);
     opacity: .6;

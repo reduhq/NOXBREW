@@ -4,6 +4,7 @@ import styles from './login.module.css'
 export default function Page(){
     return (
         <div className='container'>
+            <h1 className={styles.title}>Iniciar Sesión</h1>
             <form>
                 <div>
                     <label htmlFor="username">Username</label>

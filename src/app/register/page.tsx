@@ -5,6 +5,7 @@ import styles from './register.module.css'
 export default function page() {
     return (
         <div className="container">
+            <h1 className={styles.title}>Crea tu Cuenta</h1>
             <form>
                 <div>
                     <label htmlFor="name">Nombre</label>
