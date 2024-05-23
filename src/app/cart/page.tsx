@@ -19,7 +19,7 @@ export default function Page(){
     
     return(
         <div className={`container ${styles.page}`}>
-            <h2 className={styles.page__title}>carrito</h2>
+            <h2 className={styles.page__title}>mi pedido</h2>
             <div className={styles.page__coffee_cart}>
             {
                 cart.map(c =>(
