@@ -1,0 +1,35 @@
+
+.item{
+    /* background-color: red; */
+    max-width: 40rem;
+    margin: auto;
+}
+
+.item__header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.header__fecha{
+    text-align: start;
+}
+
+.header__fecha h2{
+    font-weight: bold;
+}
+
+.header__fecha span{
+    color: var(--secondary-color);
+}
+
+.header__total{
+    text-align: end;
+}
+
+.header__total h2{
+    font-weight: bold;
+}
+
+.header__total p{
+    color: var(--secondary-color);
+}
