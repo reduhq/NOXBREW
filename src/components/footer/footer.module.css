@@ -2,4 +2,46 @@
 .footer{
     color: white;
     padding-bottom: 5rem;
+    margin-top: 3rem;
+}
+
+.footer__social{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.social__redes{
+    margin: 0 .5rem 0 .5rem;
+    display: flex;
+    gap: .5rem;
+}
+
+.social__separador{
+    height: 1px;
+    width: 100%;
+    background-color: var(--tertiary-color);
+}
+
+.footer__brand{
+    font-size: 1.5rem;
+    color: #757986;
+    font-family: sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: .5rem;
+}
+
+.footer__copyright{
+    text-align: center;
+    color: rgba(255, 255, 255, .7);
+}
+
+.footer__legal{
+    text-align: center;
+}
+
+.footer__legal a{
+    text-decoration: underline;
+    color: var(--secondary-color);
 }
