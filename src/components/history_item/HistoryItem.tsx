@@ -28,7 +28,7 @@ export default function HistoryItem({fecha, total, productos}:Props){
                     <p>$ 15.00</p>
                 </div>
             </div>
-            <div>
+            <div className={styles.item__products}>
                 {productos.map(prod =>(
                     <HistoryProductItem
                         key={prod.nombre}

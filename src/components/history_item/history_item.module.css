@@ -1,13 +1,16 @@
 
 .item{
-    /* background-color: red; */
-    max-width: 40rem;
+    max-width: 30rem;
     margin: auto;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
 }
 
 .item__header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-bottom: .5rem;
 }
 
 .header__fecha{
@@ -32,4 +35,10 @@
 
 .header__total p{
     color: var(--secondary-color);
+}
+
+.item__products{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }

@@ -19,15 +19,15 @@ export default function HistoryProductItem({imagen, nombre, precio_unitario, can
                 <h3>{nombre}</h3>
                 <div>
                     <div>
-                        <p><span>$</span> {precio_unitario.toFixed(2)}</p>
+                        <p><span>$</span>{precio_unitario.toFixed(2)}</p>
                     </div>
                     <div>
-                        <p><span>X</span> {cantidad}</p>
+                        <p><span>x</span>{cantidad}</p>
                     </div>
                 </div>
             </div>
             <div className={styles.product_item__total}>
-                <p><span>$</span>{precio_unitario*cantidad}</p>
+                <p><span>$</span>{(precio_unitario*cantidad).toFixed(2)}</p>
             </div>
         </div>
     )

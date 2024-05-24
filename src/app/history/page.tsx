@@ -14,7 +14,7 @@ const history = [
             },
             {
                 imagen:"img1.png",
-                nombre:"Expresso simple",
+                nombre:"Mocha",
                 precio_unitario: 5.00,
                 cantidad: 2
             }
@@ -26,13 +26,13 @@ const history = [
         "productos":[
             {
                 imagen:"img1.png",
-                nombre:"Expresso simple",
+                nombre:"Flat white",
                 precio_unitario: 5.00,
                 cantidad: 1
             },
             {
                 imagen:"img1.png",
-                nombre:"Expresso simple",
+                nombre:"Prensa francesa",
                 precio_unitario: 5.00,
                 cantidad: 2
             }
