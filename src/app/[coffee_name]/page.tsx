@@ -61,17 +61,21 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
     
     return(
         <main className={`container ${styles.main}`}>
-            <Image src={`/${coffee?.imagen as string}`} alt={coffee?.nombre?coffee.nombre:""} width={500} height={500}/>
-            <h1 className={styles.title}>{coffee?.nombre as string}</h1>
-            <p className={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis officia eos ducimus, a ipsam dolorum deserunt quisquam alias provident at. Voluptatem tempore ut ipsa molestiae aliquam exercitationem, harum quia dolorum.</p>
-            <div className={styles.buy}>
-                <div className={styles.price}>
-                    <p><span>$</span>{coffee?.precio}</p>
+            <div className={styles.main__info}>
+                <Image src={`/${coffee?.imagen as string}`} alt={coffee?.nombre?coffee.nombre:""} width={500} height={500}/>
+                <div>
+                    <h1 className={styles.title}>{coffee?.nombre as string}</h1>
+                    <p className={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis officia eos ducimus, a ipsam dolorum deserunt quisquam alias provident at. Voluptatem tempore ut ipsa molestiae aliquam exercitationem, harum quia dolorum.</p>
+                    <div className={styles.buy}>
+                        <div className={styles.price}>
+                            <p><span>$</span>{coffee?.precio.toFixed(2)}</p>
+                        </div>
+                        <Counter
+                            count={count}
+                            setCount={setCount}
+                        />
+                    </div>
                 </div>
-                <Counter
-                    count={count}
-                    setCount={setCount}
-                />
             </div>
             <button onClick={addToCart} className={styles.button}><Link href={"/cart"}>Agregar al carrito</Link></button>
         </main>

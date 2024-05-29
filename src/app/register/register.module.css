@@ -9,4 +9,6 @@
     color: var(--secondary-color);
     opacity: .6;
     text-decoration: underline;
+    margin-left: 0;
+    margin-right: auto;
 }

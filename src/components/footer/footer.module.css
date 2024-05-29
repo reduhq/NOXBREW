@@ -44,4 +44,5 @@
 .footer__legal a{
     text-decoration: underline;
     color: var(--secondary-color);
+    opacity: .6;
 }

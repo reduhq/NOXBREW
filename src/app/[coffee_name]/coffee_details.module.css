@@ -4,17 +4,23 @@
 }
 
 .main img{
-    height: 20rem;
-    width: 100%;
+    width: 15rem;
     object-fit: cover;
+    border-radius: .5rem;
+    margin: auto;
 
-    filter: brightness(80%);
+    /* filter: brightness(80%); */
+}
+
+.main__info{
+    display: flex;
+    gap: 1rem;
 }
 
 .main .title{
     font-size: 2rem;
     font-weight: bold;
-    margin: .5rem 0;
+    /* margin: .5rem 0; */
 }
 
 .main .description{
@@ -52,4 +58,10 @@
     padding: .5rem 3rem;
     height: 100%;
     width: 100%;
+}
+
+@media (max-width: 650px) {
+    .main__info{
+        flex-direction: column;
+    }
 }

@@ -8,7 +8,7 @@
         {
             "nombre": "Doble espresso",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Ristretto",
@@ -23,7 +23,7 @@
         {
             "nombre": "Americano",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Macchiato",
@@ -35,12 +35,12 @@
         {
             "nombre": "Cappuccino",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Latte",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Mocha",
@@ -50,12 +50,12 @@
         {
             "nombre": "Café con leche",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Flat white",
             "precio": 5.00,
-            "imagen": "img1.png"
+            "imagen": "img2.png"
         },
         {
             "nombre": "Cortado",
