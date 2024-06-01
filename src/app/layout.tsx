@@ -5,6 +5,7 @@ import { poppins } from "@/fonts";
 import { Navbar } from "@/components/navbar/Navbar";
 import { SecondaryNavbar } from "@/components/secondary_navbar/SecondaryNavbar";
 import { Footer } from "@/components/footer/Footer";
+import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider";
 // import { relative } from "path";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -20,13 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-        <Navbar/> 
-        <SecondaryNavbar/>
-        {children}
-        <Footer/>
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <html lang="en">
+        <body className={poppins.className}>
+          <Navbar/> 
+          <SecondaryNavbar/>
+          {children}
+          <Footer/>
+        </body>
+      </html>
+    </ReactQueryClientProvider>
   );
 }
