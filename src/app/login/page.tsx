@@ -14,7 +14,7 @@ export default function Page(){
         onSuccess:(data)=>{
             setToken(data.data.access_token)
         },
-        onError:(error)=>{
+        onError:()=>{
             console.log("PUTAAAAAAAAAA ERRORRRRRRRRRRRRRRRRRRRRRR")
         }
     })
