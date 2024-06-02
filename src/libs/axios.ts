@@ -2,7 +2,7 @@ import { useAuthStore } from '@/store/auth'
 import axios, { AxiosRequestHeaders } from 'axios'
 
 const api_v1 = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/v1',
+    baseURL: process.env.API_URL,
     withCredentials:true
 })
 
