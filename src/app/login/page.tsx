@@ -10,11 +10,12 @@ import { useAuthStore } from '@/store/auth'
 export default function Page(){
     const {setToken} = useAuthStore()
     const {mutate, isSuccess} = useMutation({
-        mutationFn:async ({username, password}:{username:string, password:string}) => await loginRequest(username, password),
+        mutationFn:({username, password}:{username:string, password:string}) => loginRequest(username, password),
         onSuccess:(data)=>{
             setToken(data.data.access_token)
         },
-        onError:()=>{
+        onError:(error)=>{
+            console.log(error)
             console.log("PUTAAAAAAAAAA ERRORRRRRRRRRRRRRRRRRRRRRR")
         }
     })
@@ -26,7 +27,6 @@ export default function Page(){
             "password":password.value
         })
     }
-
     if(isSuccess) return redirect('/', RedirectType.replace)
     return (
         <div className='container'>
