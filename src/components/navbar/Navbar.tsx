@@ -7,7 +7,11 @@ import Link from "next/link"
 import { useAuthStore } from "@/store/auth"
 
 export const Navbar = () => {
-    const {token} = useAuthStore()
+    const {token, setToken} = useAuthStore()
+
+    const logoutHandler = () =>{
+        setToken("")
+    }
 
     return (
         <div className={styles.navbar}>
@@ -27,7 +31,7 @@ export const Navbar = () => {
                         <div className={`${styles.options}`}>
                             <div className={styles.invisible_item}></div>
                             <Link href={'#'} className={styles.options__item}>Perfil</Link>
-                            <Link href={'#'} className={styles.options__item}>Cerrar sesión</Link>
+                            <Link onClick={logoutHandler} href={'/login'} className={styles.options__item}>Cerrar sesión</Link>
                         </div>
                     </div>
                     :
