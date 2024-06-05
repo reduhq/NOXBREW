@@ -1,13 +1,26 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import { Product_card } from '../product_card/Product_card'
 import styles from './coffee_section.module.css'
 import coffee_data from '@/data/data.json'
-import { useState } from 'react'
+import { useDeferredValue, useEffect, useState } from 'react'
+import { getAllDrinks } from '@/api/drink'
+import { Drink } from '@/models/drink'
 
 export const CoffeeSection = () => {
     const [category, setCategory] = useState("")
+    const[drinks, setDrinks] = useState<Drink[]>()
 
+    const {data} = useQuery({
+        queryKey: ['drinks'],
+        queryFn: getAllDrinks
+    })
+    useEffect(()=>{
+        if(data){
+            setDrinks(data.data)
+        }
+    }, [data])
     return (
         <section>
             {/* categories */}
@@ -22,27 +35,14 @@ export const CoffeeSection = () => {
             {/* Select your coffee */}
             <div className={styles.products}>
             {
-                Object.entries(coffee_data).map(([key, value])=>(
-                    // if there is a category selected
-                    key==category?(
-                        value.map(val =>(
-                            <Product_card
-                                key={val.nombre}
-                                product_name={val.nombre}
-                                price={val.precio}
-                                image={val.imagen}
-                            />
-                        ))
-                    ):category==""?(
-                        value.map(val =>(
-                            <Product_card
-                                key={val.nombre}
-                                product_name={val.nombre}
-                                price={val.precio}
-                                image={val.imagen}
-                            />
-                        ))
-                    ):null
+                drinks?.map(drink=>(
+                    <Product_card
+                        key={drink.id}
+                        product_name={drink.name}
+                        description={drink.description}
+                        image={drink.image}
+                        price={drink.price}
+                    />
                 ))
             }
             </div>

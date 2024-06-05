@@ -2,6 +2,7 @@
 .card{
     padding: .5rem 1rem;
     display: flex;
+    gap: 1rem;
     background-color: #121B22;
     border-radius: .5rem;
 }
@@ -11,8 +12,8 @@
 }
 
 .info-title{
-    font-size: 1.5rem;
-    font-weight: bold;
+    /* font-size: 1.5rem; */
+    font-weight: 600;
 }
 
 .info-description{
@@ -25,7 +26,8 @@
 }
 
 .info-price{
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    font-weight: bold;
 }
 
 .info-price span{
@@ -34,4 +36,5 @@
 
 .card__image img{
     border-radius: .5rem;
+    max-width: 6rem;
 }

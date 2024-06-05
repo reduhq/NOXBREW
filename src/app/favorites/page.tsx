@@ -23,14 +23,14 @@ export default function Page(){
         <div className="container">
             <h1 className={styles.title}>favoritos</h1>
             <div className={styles.favs}>
-                {favs.map(f =>(
+                {/* {favs.map(f =>(
                     <Product_card
                         image={f.imagen}
                         price={f.precio}
                         product_name={f.nombre}
                         key={f.nombre}
                     />
-                ))}
+                ))} */}
             </div>
         </div>
     )
