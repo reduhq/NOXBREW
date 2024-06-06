@@ -75,7 +75,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                 <div>
                     <div className={styles.title_div}>
                         <h1 className={styles.title}>{coffee?.name as string}</h1>
-                        {fav?<IconHeartFilled size={30} stroke={3} color="#00FFD1" onClick={()=>favHandler(false)}/>:<IconHeart stroke={3} size={30} color="#00FFD1" onClick={()=>favHandler(true)}/>}
+                        {fav?<IconHeartFilled size={30} stroke={2} color="#00FFD1" onClick={()=>favHandler(false)}/>:<IconHeart stroke={2} size={30} color="#00FFD1" onClick={()=>favHandler(true)}/>}
                     </div>
                     <p className={styles.description}>{coffee?.description}</p>
                     <div className={styles.buy}>

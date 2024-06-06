@@ -19,7 +19,7 @@ export const Product_card = ({product_name, price, image, description}:Props) =>
     }
 
     return (
-        <div className={styles.card}>
+        <div className={`${styles.card}`}>
             <div>
                 <div className={styles.title_div}>
                     <h2 className={styles['info-title']}>{product_name}</h2>
