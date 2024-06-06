@@ -13,6 +13,7 @@ import { Counter } from "@/components/counter/Counter";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getDrinkByName } from "@/api/drink";
+import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 
 interface coffee_model{
     id:number
@@ -25,6 +26,7 @@ interface coffee_model{
 export default function Page({ params }: { params: { coffee_name: string } }) {
     const [coffee, setCoffee] = useState<coffee_model|null>(null)
     const [count, setCount] = useState(1)
+    const [fav, setFav] = useState(false)
     // const {cart, setCart} = useCartStore()
 
     const {data} = useQuery({
@@ -37,6 +39,14 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
             setCoffee(data.data)
         }
     }, [data])
+
+    const favHandler = (fav:boolean)=>{
+        if(fav){
+            setFav(fav)
+        }else{
+            setFav(fav)
+        }
+    }
 
     const addToCart = () =>{
         // Object.values(coffee_data).map(values =>{
@@ -63,7 +73,10 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                 : null}
                 
                 <div>
-                    <h1 className={styles.title}>{coffee?.name as string}</h1>
+                    <div className={styles.title_div}>
+                        <h1 className={styles.title}>{coffee?.name as string}</h1>
+                        {fav?<IconHeartFilled size={30} stroke={3} color="#00FFD1" onClick={()=>favHandler(false)}/>:<IconHeart stroke={3} size={30} color="#00FFD1" onClick={()=>favHandler(true)}/>}
+                    </div>
                     <p className={styles.description}>{coffee?.description}</p>
                     <div className={styles.buy}>
                         <div className={styles.price}>

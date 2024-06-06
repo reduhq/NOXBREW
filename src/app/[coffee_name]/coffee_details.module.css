@@ -23,6 +23,12 @@
     /* margin: .5rem 0; */
 }
 
+.title_div{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .main .description{
     filter: brightness(70%);
 }
