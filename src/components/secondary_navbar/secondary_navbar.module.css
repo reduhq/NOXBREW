@@ -2,7 +2,8 @@
 .navbar{
     display: flex;
     /* max-width: 20rem; */
-    background-color: rgba(0, 0, 0, .3);
+    z-index: 1000;
+    background-color: rgba(0, 40, 40, 0.3);
     gap: 2rem;
     padding: .5rem 2.5rem;
     justify-content: center;
