@@ -11,6 +11,12 @@
     color: #fff;
 }
 
+.title_div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .info-title{
     /* font-size: 1.5rem; */
     font-weight: 600;
@@ -37,4 +43,9 @@
 .card__image img{
     border-radius: .5rem;
     max-width: 6rem;
+}
+
+.card__image svg{
+    position: absolute;
+    right: 0;
 }
