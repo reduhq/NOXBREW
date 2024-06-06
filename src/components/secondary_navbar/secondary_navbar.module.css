@@ -3,7 +3,7 @@
     display: flex;
     /* max-width: 20rem; */
     z-index: 1000;
-    background-color: rgba(0, 40, 40, 0.3);
+    background-color: rgb(18, 27, 34, .4);
     gap: 2rem;
     padding: .5rem 2.5rem;
     justify-content: center;

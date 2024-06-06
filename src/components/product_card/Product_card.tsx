@@ -11,7 +11,7 @@ interface Props{
 
 export const Product_card = ({product_name, price, image, description}:Props) => {
     return (
-        <Link href={`/${product_name.toLowerCase().replace(/ /g, '-')}`} className={styles.card}>
+        <Link href={`/${product_name.toLowerCase().replace(" ", "-")}`} className={styles.card}>
             <div className={styles.card__info}>
                 <h2 className={styles['info-title']}>{product_name}</h2>
                 <p className={styles['info-description']}>{description}</p>
