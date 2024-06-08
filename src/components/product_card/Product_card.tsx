@@ -3,6 +3,7 @@ import styles from "./product_card.module.css"
 import Image from "next/image"
 import { useState } from "react"
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
+import { useAuthStore } from "@/store/auth"
 
 interface Props{
     product_name:string
@@ -12,10 +13,15 @@ interface Props{
 }
 
 export const Product_card = ({product_name, price, image, description}:Props) => {
+    const {token} = useAuthStore()
     const [fav, setFav] = useState(false)
 
     const favHandler = (fav:boolean) =>{
-        setFav(fav)
+        if(token){
+            setFav(fav)
+            return 
+        }
+        console.log("NO AUTORIZADO")
     }
 
     return (

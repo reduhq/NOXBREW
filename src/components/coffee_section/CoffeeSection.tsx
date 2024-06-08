@@ -5,22 +5,27 @@ import { Product_card } from '../product_card/Product_card'
 import styles from './coffee_section.module.css'
 import coffee_data from '@/data/data.json'
 import { useDeferredValue, useEffect, useState } from 'react'
-import { getAllDrinks } from '@/api/drink'
+import { getAllPublicDrinks } from '@/api/drink'
 import { Drink } from '@/models/drink'
+import { useAuthStore } from '@/store/auth'
 
 export const CoffeeSection = () => {
+    const {token} = useAuthStore()
     const [category, setCategory] = useState("")
     const[drinks, setDrinks] = useState<Drink[]>()
 
     const {data} = useQuery({
         queryKey: ['drinks'],
-        queryFn: getAllDrinks
+        queryFn: getAllPublicDrinks,
+        enabled: !token
     })
+
     useEffect(()=>{
         if(data){
             setDrinks(data.data)
         }
     }, [data])
+
     return (
         <section>
             {/* categories */}

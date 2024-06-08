@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getDrinkByName } from "@/api/drink";
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
+import { useAuthStore } from "@/store/auth";
 
 interface coffee_model{
     id:number
@@ -24,6 +25,7 @@ interface coffee_model{
 }
 
 export default function Page({ params }: { params: { coffee_name: string } }) {
+    const {token} = useAuthStore()
     const [coffee, setCoffee] = useState<coffee_model|null>(null)
     const [count, setCount] = useState(1)
     const [fav, setFav] = useState(false)
@@ -41,11 +43,11 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
     }, [data])
 
     const favHandler = (fav:boolean)=>{
-        if(fav){
+        if(token){
             setFav(fav)
-        }else{
-            setFav(fav)
+            return 
         }
+        console.log("NO AUTORIZADO")
     }
 
     const addToCart = () =>{
