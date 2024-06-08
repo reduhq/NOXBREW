@@ -12,7 +12,7 @@ import { useAuthStore } from '@/store/auth'
 export const CoffeeSection = () => {
     const {token, setToken} = useAuthStore()
     const [category, setCategory] = useState("")
-    const[drinks, setDrinks] = useState<Drink[]>()
+    const[drinks, setDrinks] = useState<Drink[]>([])
 
     const {data:publicDrinks} = useQuery({
         queryKey: ['publicDrinks'],
@@ -35,8 +35,11 @@ export const CoffeeSection = () => {
             setToken("")
             return
         }
+        // if(!!token && !privateDrinks){
+        //     setDrinks([])
+        // }
         setDrinks(privateDrinks?.data)
-    }, [token, publicDrinks, privateDrinks])
+        }, [token, publicDrinks, privateDrinks])
 
     return (
         <section>
@@ -60,7 +63,7 @@ export const CoffeeSection = () => {
                         description={drink.description}
                         image={drink.image}
                         price={drink.price}
-                        favorite={drink.favorite?drink.favorite[0]&&drink.favorite[0].id:null}
+                        favorite={drink.favorite&&drink.favorite[0]?drink.favorite[0].id:null}
                     />
                 ))
             }

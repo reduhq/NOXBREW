@@ -9,5 +9,5 @@ export const getAllPrivateDrinks = async()=>{
 }
 
 export const getDrinkByName = async(coffee_name:string)=>{
-    return await api_v1.get(`/drink${coffee_name}`)
+    return await api_v1.get(`/drink/${coffee_name}`)
 }

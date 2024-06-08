@@ -1,7 +1,7 @@
 import Link from "next/link"
 import styles from "./product_card.module.css"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 import { useAuthStore } from "@/store/auth"
 import { useMutation } from "@tanstack/react-query"
@@ -17,17 +17,30 @@ interface Props{
 }
 
 export const Product_card = ({drink_id, product_name, price, image, description, favorite}:Props) => {
+    // const queryClient = useQueryClient()
     const {token} = useAuthStore()
     const [fav, setFav] = useState(!!favorite)
 
     const {mutate:addFavorite} = useMutation({
         mutationKey:['favorite', product_name],
-        mutationFn: () => createFavorite(drink_id)
+        mutationFn: () => createFavorite(drink_id),
+        onSuccess: ()=>{
+            setFav(true)
+            // queryClient.invalidateQueries({queryKey: ['favorite_drinks']})
+            // queryClient.invalidateQueries({queryKey: ['privateDrinks']})
+            // queryClient.invalidateQueries({queryKey: ['favorite', product_name]})
+        }
     })
 
     const {mutate:removeFavorite} = useMutation({
         mutationKey: ['favorite', product_name],
-        mutationFn: () => deleteFavorite(favorite as number)
+        mutationFn: () => deleteFavorite(favorite as number),
+        onSuccess: ()=>{
+            setFav(false)
+            // queryClient.invalidateQueries({queryKey: ['favorite_drinks']})
+            // queryClient.invalidateQueries({queryKey: ['privateDrinks']})
+            // queryClient.invalidateQueries({queryKey: ['favorite', product_name]})
+        }
     })
 
     const favHandler = (flag:boolean) =>{
@@ -37,12 +50,13 @@ export const Product_card = ({drink_id, product_name, price, image, description,
         }
         if(flag){
             addFavorite()
-            setFav(flag)
             return 
         }
         removeFavorite()
-        setFav(flag)
     }
+    useEffect(()=>{
+        setFav(!!favorite)
+    },[favorite])
 
     return (
         <div className={`${styles.card}`}>

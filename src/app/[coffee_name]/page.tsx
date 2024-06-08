@@ -13,7 +13,7 @@ import { Counter } from "@/components/counter/Counter";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getDrinkByName } from "@/api/drink";
-import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
+// import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { useAuthStore } from "@/store/auth";
 
 interface coffee_model{
@@ -42,14 +42,6 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
         }
     }, [data])
 
-    const favHandler = (fav:boolean)=>{
-        if(token){
-            setFav(fav)
-            return 
-        }
-        console.log("NO AUTORIZADO")
-    }
-
     const addToCart = () =>{
         // Object.values(coffee_data).map(values =>{
         //     values.map(c =>{
@@ -77,7 +69,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                 <div>
                     <div className={styles.title_div}>
                         <h1 className={styles.title}>{coffee?.name as string}</h1>
-                        {fav?<IconHeartFilled size={30} stroke={2} color="#00FFD1" onClick={()=>favHandler(false)}/>:<IconHeart stroke={2} size={30} color="#00FFD1" onClick={()=>favHandler(true)}/>}
+                        {/* {fav?<IconHeartFilled size={30} stroke={2} color="#00FFD1" onClick={()=>favHandler(false)}/>:<IconHeart stroke={2} size={30} color="#00FFD1" onClick={()=>favHandler(true)}/>} */}
                     </div>
                     <p className={styles.description}>{coffee?.description}</p>
                     <div className={styles.buy}>

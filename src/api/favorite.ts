@@ -1,5 +1,9 @@
 import api_v1 from './../libs/axios'
 
+export const getFavorites = async()=>{
+    return api_v1.get(`/favorite`)
+}
+
 export const createFavorite = async(drink_id:number)=>{
     return api_v1.post(`/favorite/${drink_id}`)
 }
