@@ -4,8 +4,11 @@ import Image from "next/image"
 import { useState } from "react"
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 import { useAuthStore } from "@/store/auth"
+import { useMutation } from "@tanstack/react-query"
+import { createFavorite, deleteFavorite } from "@/api/favorite"
 
 interface Props{
+    drink_id:number
     product_name:string
     description:string
     price:number
@@ -13,16 +16,32 @@ interface Props{
     favorite:number|null
 }
 
-export const Product_card = ({product_name, price, image, description, favorite}:Props) => {
+export const Product_card = ({drink_id, product_name, price, image, description, favorite}:Props) => {
     const {token} = useAuthStore()
     const [fav, setFav] = useState(!!favorite)
 
-    const favHandler = (fav:boolean) =>{
-        if(token){
-            setFav(fav)
+    const {mutate:addFavorite} = useMutation({
+        mutationKey:['favorite', product_name],
+        mutationFn: () => createFavorite(drink_id)
+    })
+
+    const {mutate:removeFavorite} = useMutation({
+        mutationKey: ['favorite', product_name],
+        mutationFn: () => deleteFavorite(favorite as number)
+    })
+
+    const favHandler = (flag:boolean) =>{
+        if(!token) {
+            console.log("NO AUTORIZADO")
+            return
+        }
+        if(flag){
+            addFavorite()
+            setFav(flag)
             return 
         }
-        console.log("NO AUTORIZADO")
+        removeFavorite()
+        setFav(flag)
     }
 
     return (

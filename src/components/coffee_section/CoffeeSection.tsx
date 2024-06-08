@@ -4,35 +4,39 @@ import { useQuery } from '@tanstack/react-query'
 import { Product_card } from '../product_card/Product_card'
 import styles from './coffee_section.module.css'
 import coffee_data from '@/data/data.json'
-import { useDeferredValue, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getAllPrivateDrinks, getAllPublicDrinks } from '@/api/drink'
 import { Drink } from '@/models/drink'
 import { useAuthStore } from '@/store/auth'
 
 export const CoffeeSection = () => {
-    const {token} = useAuthStore()
+    const {token, setToken} = useAuthStore()
     const [category, setCategory] = useState("")
     const[drinks, setDrinks] = useState<Drink[]>()
 
     const {data:publicDrinks} = useQuery({
-        queryKey: ['drinks'],
+        queryKey: ['publicDrinks'],
         queryFn: getAllPublicDrinks,
         enabled: !token
     })
-    const {data:privateDrinks} = useQuery({
-        queryKey:['drinks'],
+    const {data:privateDrinks, isError} = useQuery({
+        queryKey:['privateDrinks'],
         queryFn: getAllPrivateDrinks,
+        retry: 0,
         enabled: !!token
     })
-
-    console.log(publicDrinks)
+    
     useEffect(()=>{
         if(!token){
             setDrinks(publicDrinks?.data)
             return
         }
+        if(isError){
+            setToken("")
+            return
+        }
         setDrinks(privateDrinks?.data)
-    }, [publicDrinks, privateDrinks])
+    }, [token, publicDrinks, privateDrinks])
 
     return (
         <section>
@@ -51,11 +55,12 @@ export const CoffeeSection = () => {
                 drinks?.map(drink=>(
                     <Product_card
                         key={drink.id}
+                        drink_id={drink.id}
                         product_name={drink.name}
                         description={drink.description}
                         image={drink.image}
                         price={drink.price}
-                        favorite={drink.favorite?drink.favorite.id:null}
+                        favorite={drink.favorite?drink.favorite[0]&&drink.favorite[0].id:null}
                     />
                 ))
             }

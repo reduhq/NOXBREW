@@ -8,7 +8,7 @@ export interface Drink{
     drink_type:{
         name:string
     }
-    favorite:{
+    favorite:[{
         id:number
-    }
+    }]
 }
