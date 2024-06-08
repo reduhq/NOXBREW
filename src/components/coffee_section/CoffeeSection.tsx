@@ -5,7 +5,7 @@ import { Product_card } from '../product_card/Product_card'
 import styles from './coffee_section.module.css'
 import coffee_data from '@/data/data.json'
 import { useDeferredValue, useEffect, useState } from 'react'
-import { getAllPublicDrinks } from '@/api/drink'
+import { getAllPrivateDrinks, getAllPublicDrinks } from '@/api/drink'
 import { Drink } from '@/models/drink'
 import { useAuthStore } from '@/store/auth'
 
@@ -14,17 +14,25 @@ export const CoffeeSection = () => {
     const [category, setCategory] = useState("")
     const[drinks, setDrinks] = useState<Drink[]>()
 
-    const {data} = useQuery({
+    const {data:publicDrinks} = useQuery({
         queryKey: ['drinks'],
         queryFn: getAllPublicDrinks,
         enabled: !token
     })
+    const {data:privateDrinks} = useQuery({
+        queryKey:['drinks'],
+        queryFn: getAllPrivateDrinks,
+        enabled: !!token
+    })
 
+    console.log(publicDrinks)
     useEffect(()=>{
-        if(data){
-            setDrinks(data.data)
+        if(!token){
+            setDrinks(publicDrinks?.data)
+            return
         }
-    }, [data])
+        setDrinks(privateDrinks?.data)
+    }, [publicDrinks, privateDrinks])
 
     return (
         <section>
@@ -47,6 +55,7 @@ export const CoffeeSection = () => {
                         description={drink.description}
                         image={drink.image}
                         price={drink.price}
+                        favorite={drink.favorite?drink.favorite.id:null}
                     />
                 ))
             }

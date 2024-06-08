@@ -10,11 +10,12 @@ interface Props{
     description:string
     price:number
     image:string
+    favorite:number|null
 }
 
-export const Product_card = ({product_name, price, image, description}:Props) => {
+export const Product_card = ({product_name, price, image, description, favorite}:Props) => {
     const {token} = useAuthStore()
-    const [fav, setFav] = useState(false)
+    const [fav, setFav] = useState(!!favorite)
 
     const favHandler = (fav:boolean) =>{
         if(token){
