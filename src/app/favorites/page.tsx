@@ -6,29 +6,16 @@ import { useQuery } from '@tanstack/react-query'
 import { getFavorites } from '@/api/favorite'
 import { useEffect, useState } from 'react'
 import { Drink } from '@/models/drink'
+import { useAuthStore } from '@/store/auth'
+import Link from 'next/link'
 
 export default function Page(){
+    const {token} = useAuthStore()
     const [favorites, setFavorites] = useState<Array<{drink:Drink}>>([])
-    // const favs = [
-    //     {
-    //         "nombre": "Americano",
-    //         "precio": 5.00,
-    //         "imagen": "img1.png"
-    //     },
-    //     {
-    //         "nombre": "Cappuccino",
-    //         "precio": 5.00,
-    //         "imagen": "img1.png"
-    //     },
-    //     {
-    //         "nombre": "Cold brew",
-    //         "precio": 5.00,
-    //         "imagen": "img1.png"
-    //     }
-    // ]
     const {data} = useQuery({
         queryKey: ['favorite_drinks'],
-        queryFn: getFavorites
+        queryFn: getFavorites,
+        enabled: !!token
     })
     useEffect(()=>{
         if(data){
@@ -38,6 +25,8 @@ export default function Page(){
     return (
         <div className="container">
             <h1 className={styles.title}>favoritos</h1>
+            {!token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para agregar a favoritos</p>}
+            {token&&favorites.length == 0?<p className={styles.no_favs}>Aún no tienes elementos en tus favoritos</p>:null}
             <div className={styles.favs}>
                 {favorites.map(f =>(
                     <Product_card

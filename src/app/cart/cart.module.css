@@ -21,7 +21,9 @@
 .pay{
     display: flex;
     justify-content: center;
+    margin: auto;
     margin-top: 1rem;
+    max-width: 35rem;
 }
 
 .pay__price{

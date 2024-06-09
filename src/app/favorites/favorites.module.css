@@ -13,3 +13,18 @@
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: .5rem;
 }
+
+.auth{
+    text-align: center;
+    color: #fffa;
+}
+
+.auth a{
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.no_favs{
+    text-align: center;
+    color: #fffa;
+}
