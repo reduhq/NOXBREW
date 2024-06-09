@@ -11,10 +11,11 @@ import { Counter } from "@/components/counter/Counter";
 // import {redirect} from 'next/navigation'
 // import { initializeTraceState } from "next/dist/trace";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getDrinkByName } from "@/api/drink";
 // import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { useAuthStore } from "@/store/auth";
+import { addCart } from "@/api/cart";
 
 interface coffee_model{
     id:number
@@ -36,6 +37,14 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
         queryFn: () => getDrinkByName(params.coffee_name)
     })
 
+    const {mutate} = useMutation({
+        mutationKey: ["cart", coffee?.id],
+        mutationFn: () => addCart(coffee?.id),
+        onSuccess:()=>{
+            console.log("SIUUUUUUUUU")
+        }
+    })
+
     useEffect(()=>{
         if(data){
             setCoffee(data.data)
@@ -43,20 +52,11 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
     }, [data])
 
     const addToCart = () =>{
-        // Object.values(coffee_data).map(values =>{
-        //     values.map(c =>{
-        //         if(c.nombre == coffee?.nombre){
-        //             const buyCoffee = {
-        //                 nombre:c.nombre,
-        //                 precio:c.precio,
-        //                 imagen:c.imagen,
-        //                 cantidad: count
-        //             }
-        //             setCart([...cart, buyCoffee])
-        //             // return 
-        //         }
-        //     })
-        // })
+        if(!token){
+            console.log("NO AUTORIZADO")
+            return
+        }
+        mutate()
     }
     
     return(
@@ -83,7 +83,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
                     </div>
                 </div>
             </div>
-            <button onClick={addToCart} className={styles.button}><Link href={"/cart"}>Agregar al carrito</Link></button>
+            <button onClick={addToCart} className={styles.button}>Agregar al carrito</button>
         </main>
     )
 }

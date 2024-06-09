@@ -63,11 +63,11 @@
     margin: 1rem auto;
 }
 
-.button a{
-    display: inline-block;
+.button{
+    /* display: inline-block; */
     padding: .5rem 3rem;
-    height: 100%;
-    width: 100%;
+    /* height: 100%; */
+    /* width: 100%; */
 }
 
 @media (max-width: 650px) {

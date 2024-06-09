@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 import { useAuthStore } from "@/store/auth"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createFavorite, deleteFavorite } from "@/api/favorite"
 
 interface Props{
@@ -17,7 +17,7 @@ interface Props{
 }
 
 export const Product_card = ({drink_id, product_name, price, image, description, favorite}:Props) => {
-    // const queryClient = useQueryClient()
+    const queryClient = useQueryClient()
     const {token} = useAuthStore()
     const [fav, setFav] = useState(!!favorite)
 
@@ -26,8 +26,8 @@ export const Product_card = ({drink_id, product_name, price, image, description,
         mutationFn: () => createFavorite(drink_id),
         onSuccess: ()=>{
             setFav(true)
-            // queryClient.invalidateQueries({queryKey: ['favorite_drinks']})
-            // queryClient.invalidateQueries({queryKey: ['privateDrinks']})
+            queryClient.invalidateQueries({queryKey: ['favorite_drinks']})
+            queryClient.invalidateQueries({queryKey: ['privateDrinks']})
             // queryClient.invalidateQueries({queryKey: ['favorite', product_name]})
         }
     })
