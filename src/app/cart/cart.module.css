@@ -57,3 +57,18 @@
     font-weight: bold;
     font-size: 1.5rem;
 }
+
+.auth{
+    text-align: center;
+    color: #fffa;
+}
+
+.auth a{
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.no_cart{
+    text-align: center;
+    color: #fffa;
+}

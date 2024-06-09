@@ -28,10 +28,8 @@ export default function Page(){
         if(cart.length == 0) return
         let t = 0
         cart.map(c =>{
-            console.log(c.drink.quantity?c.drink.quantity:1, c.drink.price,(c.drink.quantity?c.drink.quantity:1) * c.drink.price)
             t+=((c.drink.quantity?c.drink.quantity:1) * c.drink.price)
         })
-        console.log(t)
         setTotal(t)
     },[cart])
 
@@ -45,20 +43,20 @@ export default function Page(){
     return(
         <div className={`container ${styles.page}`}>
             <h2 className={styles.page__title}>mi pedido</h2>
-            {/* {!token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para agregar a favoritos</p>}
-            {token&&cart.length == 0?<p className={styles.no_favs}>Aún no tienes elementos en tus favoritos</p>:null} */}
-            <div className={styles.page__coffee_cart}>
-            {
-                cart.map(c =>(
-                    <CartItem
-                        key={c.drink.name}
-                        coffee={c.drink}
-                        cartStore={{cart, setCart}}
-                    />
-                ))
-            }   
-            </div>
-            <div className={styles.pay}>
+            {!token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para agregar items a tu carrito</p>}
+            {token&&cart.length == 0?<p className={styles.no_cart}>Aún no tienes elementos en tu carrito</p>:null}
+            {token&&(<div className={styles.page__coffee_cart}>
+                {
+                    cart.map(c =>(
+                        <CartItem
+                            key={c.drink.name}
+                            coffee={c.drink}
+                            cartStore={{cart, setCart}}
+                        />
+                    ))
+                }
+            </div>)}
+            {token&&(<div className={styles.pay}>
                 <div className={styles.pay__price}>
                     <p className={styles.pay__price_title}>Precio Total</p>
                     <p className={styles.pay__price_amount}><span>$</span> {total.toFixed(2)}</p>
@@ -66,7 +64,7 @@ export default function Page(){
                 <div className={styles.pay__button_div}>
                     <button className={styles.pay__button}>Pagar</button>
                 </div>
-            </div>
+            </div>)}
         </div>
     )
 }

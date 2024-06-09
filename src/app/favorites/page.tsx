@@ -27,7 +27,7 @@ export default function Page(){
             <h1 className={styles.title}>favoritos</h1>
             {!token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para agregar a favoritos</p>}
             {token&&favorites.length == 0?<p className={styles.no_favs}>Aún no tienes elementos en tus favoritos</p>:null}
-            <div className={styles.favs}>
+            {token&&(<div className={styles.favs}>
                 {favorites.map(f =>(
                     <Product_card
                         key={f.drink.id}
@@ -39,7 +39,7 @@ export default function Page(){
                         favorite={f.drink.favorite&&f.drink.favorite[0]?f.drink.favorite[0].id:null}
                     />
                 ))}
-            </div>
+            </div>)}
         </div>
     )
 }
