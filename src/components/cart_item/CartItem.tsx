@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 import styles from './cart_item.module.css'
 import { Drink } from "@/models/drink"
+import { IconEdit, IconTrash } from "@tabler/icons-react"
 
 interface coffee_item{
     image:string
@@ -42,16 +43,22 @@ export const CartItem = ({coffee, cartStore}:Props) => {
 
     return (
         <div className={styles.cart_item}>
-            <div className={styles.cart_item__image}>
-                <Image src={`${coffee.image}`} alt={coffee.name} width={100} height={100} />
+            <div className={styles.data}>
+                <div className={styles.cart_item__image}>
+                    <Image src={`${coffee.image}`} alt={coffee.name} width={100} height={100} />
+                </div>
+                <div className={styles.cart_item__info}>
+                    <h2 className={styles.info__title}>{coffee.name}</h2>
+                    <Counter
+                        count={count}
+                        setCount={setCount}
+                    />
+                    <h3 className={styles.info__price}><span>Total $</span>{(coffee.price * count).toFixed(2)}</h3>
+                </div>
             </div>
-            <div className={styles.cart_item__info}>
-                <h2 className={styles.info__title}>{coffee.name}</h2>
-                <Counter
-                    count={count}
-                    setCount={setCount}
-                />
-                <h3 className={styles.info__price}><span>Total $</span>{(coffee.price * count).toFixed(2)}</h3>
+            <div className={styles.actions}>
+                <div className={styles.delete}><IconTrash color="#f00"/></div>
+                <div className={styles.update}><IconEdit color="#cfc475"/></div>
             </div>
         </div>
     )
