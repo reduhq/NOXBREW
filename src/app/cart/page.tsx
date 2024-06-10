@@ -12,7 +12,7 @@ import { getAllCart } from '@/api/cart'
 
 export default function Page(){
     const {token} = useAuthStore()
-    const [cart, setCart] = useState<Array<{drink:Drink&{quantity:number}}>>([])
+    const [cart, setCart] = useState<Array<{id:number, drink:Drink&{quantity:number}}>>([])
     // const [cantidad, setCantidad] = useState(1)
     // const {cart} = useCartStore()
     const [total, setTotal] = useState(0)
@@ -20,7 +20,7 @@ export default function Page(){
     const {data} = useQuery({
         queryKey: ['cartItems'],
         queryFn: getAllCart,
-        enabled: !!token
+        enabled: !!token,
     })
 
 
@@ -50,7 +50,7 @@ export default function Page(){
                     cart.map(c =>(
                         <CartItem
                             key={c.drink.name}
-                            coffee={c.drink}
+                            cart_item={c}
                             cartStore={{cart, setCart}}
                         />
                     ))

@@ -12,5 +12,9 @@ export const getAllCart = async()=>{
 
 
 export const updateCart = async(updateCart:cartUpdate)=>{
-    return api_v1.put('/', updateCart)
+    return api_v1.put('/cart', updateCart)
 }
+
+export const deleteCart = async(id:number)=>{
+    return api_v1.delete(`/cart/${id}`)
+} 
