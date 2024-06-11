@@ -12,7 +12,7 @@ import { getAllCart } from '@/api/cart'
 
 export default function Page(){
     const {token} = useAuthStore()
-    const [cart, setCart] = useState<Array<{id:number, drink:Drink&{quantity:number}}>>([])
+    const [cart, setCart] = useState<Array<{id:number, drink:Drink, quantity:number}>>([])
     // const [cantidad, setCantidad] = useState(1)
     // const {cart} = useCartStore()
     const [total, setTotal] = useState(0)
@@ -22,12 +22,13 @@ export default function Page(){
         queryFn: getAllCart,
         enabled: !!token,
     })
+    console.log(cart)
 
 
     useEffect(()=>{
         let t = 0
         cart.map(c =>{
-            t+=((c.drink.quantity?c.drink.quantity:1) * c.drink.price)
+            t+=((c.quantity?c.quantity:1) * c.drink.price)
         })
         setTotal(t)
     },[cart])

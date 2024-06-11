@@ -5,9 +5,9 @@ import { useEffect, useState } from "react"
 
 import styles from './cart_item.module.css'
 import { Drink } from "@/models/drink"
-import { IconEdit, IconTrash } from "@tabler/icons-react"
+import { IconCheck, IconEdit, IconTrash } from "@tabler/icons-react"
 import { QueryClient, useMutation } from "@tanstack/react-query"
-import { deleteCart } from "@/api/cart"
+import { deleteCart, updateCart } from "@/api/cart"
 
 interface cart_item{
     id:number,
@@ -15,23 +15,25 @@ interface cart_item{
         image:string
         name:string
         price:number
+        },
     quantity:number
-        }
 }
 
 interface Props{
     cart_item:cart_item,
     cartStore:{
-        cart:Array<{id:number, drink:Drink&{quantity:number}}>
-        setCart: React.Dispatch<React.SetStateAction<Array<{id:number, drink:Drink&{quantity:number}}>>>
+        cart:Array<{id:number, drink:Drink, quantity:number}>
+        setCart: React.Dispatch<React.SetStateAction<Array<{id:number, drink:Drink, quantity:number}>>>
     }
 }
 
 
 export const CartItem = ({cart_item, cartStore}:Props) => {
+    console.log(cart_item.quantity)
     const queryClient = new QueryClient()
-    const [count, setCount] = useState(cart_item.drink.quantity?cart_item.drink.quantity:1)
+    const [count, setCount] = useState(cart_item.quantity?cart_item.quantity:1)
     const {cart, setCart} = cartStore
+    const [update, setUpdate] = useState(false)
 
     const {mutate} = useMutation({
         mutationKey: ['deleted', cart_item.drink.name],
@@ -44,22 +46,37 @@ export const CartItem = ({cart_item, cartStore}:Props) => {
         }
     })
 
+    const {mutate:updateItem} = useMutation({
+        mutationKey: ['updated', cart_item.drink.name],
+        mutationFn: () => updateCart({id:cart_item.id, quantity:count})
+    })
+
     useEffect(()=>{
-        if(count != cart_item.drink.quantity){
+        if(count != cart_item.quantity){
             const index = cart.findIndex(item => item.drink.name == cart_item.drink.name)
             const item = cart[index]
             const new_item = {...item}
-            new_item.drink.quantity = count
+            new_item.quantity = count
             //
             const new_data = [...cart]
             new_data[index] = new_item
             setCart(new_data)
-            cart_item.drink.quantity= count
+            cart_item.quantity= count
         }
     }, [count])
 
     const deleteHandler = ()=>{
         mutate()
+    }
+
+    const updateHandler = ()=>{
+        setUpdate(true)
+    }
+
+    const confirmHandler = ()=>{
+        console.log("SI SE ACTUALIZA")
+        updateItem()
+        setUpdate(false)
     }
 
     return (
@@ -73,13 +90,21 @@ export const CartItem = ({cart_item, cartStore}:Props) => {
                     <Counter
                         count={count}
                         setCount={setCount}
+                        enabled={update}
                     />
                     <h3 className={styles.info__price}><span>Total $</span>{(cart_item.drink.price * count).toFixed(2)}</h3>
                 </div>
             </div>
             <div className={styles.actions}>
                 <button onClick={deleteHandler} className={styles.delete}><IconTrash color="#f00"/></button>
-                <div className={styles.update}><IconEdit color="#cfc475"/></div>
+                {
+                    update?(
+                        <button onClick={confirmHandler} className={styles.confirm}><IconCheck color="#00ffd1"/></button>
+                    )
+                    :(
+                        <button onClick={updateHandler} className={styles.update}><IconEdit color="#cfc475"/></button>
+                    )
+                }
             </div>
         </div>
     )
