@@ -25,7 +25,6 @@ export default function Page(){
 
 
     useEffect(()=>{
-        if(cart.length == 0) return
         let t = 0
         cart.map(c =>{
             t+=((c.drink.quantity?c.drink.quantity:1) * c.drink.price)
