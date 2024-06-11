@@ -16,6 +16,7 @@ import { getDrinkByName } from "@/api/drink";
 // import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { useAuthStore } from "@/store/auth";
 import { addCart } from "@/api/cart";
+import { cartCreate } from "@/models/cart";
 
 interface coffee_model{
     id:number
@@ -39,7 +40,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
 
     const {mutate} = useMutation({
         mutationKey: ["cart", coffee?.id],
-        mutationFn: () => addCart(coffee?.id),
+        mutationFn: (createCart:cartCreate) => addCart(createCart),
         onSuccess:()=>{
             console.log("SIUUUUUUUUU")
         }
@@ -56,7 +57,9 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
             console.log("NO AUTORIZADO")
             return
         }
-        mutate()
+        if(coffee){
+            mutate({drink_id:coffee.id, quantity:count})
+        }
     }
     
     return(

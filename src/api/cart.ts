@@ -1,8 +1,8 @@
 import api_v1 from "@/libs/axios";
-import { cartUpdate } from "@/models/cart";
+import { cartCreate, cartUpdate } from "@/models/cart";
 
-export const addCart = async(drink_id:number = 0)=>{
-    return api_v1.post(`/cart/${drink_id}`)
+export const addCart = async(createCart:cartCreate)=>{
+    return api_v1.post(`/cart`, createCart)
 }
 
 
