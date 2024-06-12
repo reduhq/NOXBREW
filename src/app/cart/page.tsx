@@ -9,10 +9,12 @@ import { useAuthStore } from '@/store/auth'
 import { Drink } from '@/models/drink'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCart } from '@/api/cart'
+import { ConfirmSale } from '@/components/confirm_sale/ConfirmSale'
 
 export default function Page(){
+    const [pay, setPay] = useState(false)
     const {token} = useAuthStore()
-    const [cart, setCart] = useState<Array<{id:number, drink:Drink, quantity:number}>>([])
+    const [cart, setCart] = useState<Array<{id:number, drink:Drink, quantity:number, edited:boolean}>>([])
     // const [cantidad, setCantidad] = useState(1)
     // const {cart} = useCartStore()
     const [total, setTotal] = useState(0)
@@ -22,7 +24,6 @@ export default function Page(){
         queryFn: getAllCart,
         enabled: !!token,
     })
-    console.log(cart)
 
 
     useEffect(()=>{
@@ -35,13 +36,28 @@ export default function Page(){
 
     useEffect(()=>{
         if(data){
+            (data.data as Array<{id:number, drink:Drink, quantity:number, edited:boolean}>).forEach(e => e.edited=false)
             setCart(data.data)
         }
     }, [data])
-// console.log(cart)
+
+    const payHandler = ()=>{
+        if(cart.every(e => e.edited==false)){
+            setPay(true)
+        }
+        console.log("GUARDE LOS CAMBIOS ANTES DE REALIZAR EL PAGO")
+    }
     
     return(
         <div className={`container ${styles.page}`}>
+            {
+                pay?(
+                    <ConfirmSale
+                        cart={cart}
+                        setPay={setPay}
+                    />
+                ): null
+            }
             <h2 className={styles.page__title}>mi pedido</h2>
             {!token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para agregar items a tu carrito</p>}
             {token&&cart.length == 0?<p className={styles.no_cart}>Aún no tienes elementos en tu carrito</p>:null}
@@ -62,7 +78,7 @@ export default function Page(){
                     <p className={styles.pay__price_amount}><span>$</span> {total.toFixed(2)}</p>
                 </div>
                 <div className={styles.pay__button_div}>
-                    <button className={styles.pay__button}>Pagar</button>
+                    <button onClick={payHandler} className={styles.pay__button}>Pagar</button>
                 </div>
             </div>)}
         </div>

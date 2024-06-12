@@ -92,3 +92,23 @@ form button{
     flex-direction: column;
   }
 }
+
+/* table */
+table{
+  thead{
+    background-color: var(--secondary-color);
+  }
+  th, td{
+    padding: .5rem .5rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  th{
+    color: var(--tertiary-color);
+  }
+
+  td{
+    border-bottom: 1px solid var(--secondary-color);
+  }
+} 

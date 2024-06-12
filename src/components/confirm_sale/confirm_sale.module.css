@@ -1,0 +1,56 @@
+
+
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000c;
+    z-index: 5000;
+}
+
+.modal__content{
+    max-width: 30rem;
+    background-color: var(--tertiary-color);
+    margin: auto;
+    margin-top: 5rem;
+    border-radius: .5rem;
+    padding: 1rem .5rem;
+}
+
+.modal__content__title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.table{
+    overflow: auto;
+}
+
+.table table{
+    margin: auto;
+}
+
+.modal__content__buttons{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons__accept{
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
+    font-weight: bold;
+    border-radius: .5rem;
+    padding: .5rem  1.5rem;
+}
+
+.buttons__cancel{
+    background-color: #f00;
+    font-weight: bold;
+    border-radius: .5rem;
+    padding: .5rem  1.5rem;
+}

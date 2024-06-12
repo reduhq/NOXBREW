@@ -83,3 +83,10 @@
     display: flex;
     align-items: center;
 }
+
+.not_saved{
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #f00;
+}

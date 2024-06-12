@@ -16,20 +16,20 @@ interface cart_item{
         name:string
         price:number
         },
-    quantity:number
+    quantity:number,
+    edited:boolean
 }
 
 interface Props{
     cart_item:cart_item,
     cartStore:{
-        cart:Array<{id:number, drink:Drink, quantity:number}>
-        setCart: React.Dispatch<React.SetStateAction<Array<{id:number, drink:Drink, quantity:number}>>>
+        cart:Array<{id:number, drink:Drink, quantity:number, edited:boolean}>
+        setCart: React.Dispatch<React.SetStateAction<Array<{id:number, drink:Drink, quantity:number, edited:boolean}>>>
     }
 }
 
 
 export const CartItem = ({cart_item, cartStore}:Props) => {
-    console.log(cart_item.quantity)
     const queryClient = new QueryClient()
     const [count, setCount] = useState(cart_item.quantity?cart_item.quantity:1)
     const {cart, setCart} = cartStore
@@ -70,10 +70,26 @@ export const CartItem = ({cart_item, cartStore}:Props) => {
     }
 
     const updateHandler = ()=>{
+        const index = cart.findIndex(item => item.drink.name == cart_item.drink.name)
+        const new_item = {...cart[index]}
+        new_item.edited = true
+        //
+        const new_data = [...cart]
+        new_data[index] = new_item
+        setCart(new_data)
+
         setUpdate(true)
     }
 
     const confirmHandler = ()=>{
+        const index = cart.findIndex(item => item.drink.name == cart_item.drink.name)
+        const new_item = {...cart[index]}
+        new_item.edited = false
+        //
+        const new_data = [...cart]
+        new_data[index] = new_item
+        setCart(new_data)
+
         console.log("SI SE ACTUALIZA")
         updateItem()
         setUpdate(false)
@@ -93,6 +109,7 @@ export const CartItem = ({cart_item, cartStore}:Props) => {
                         enabled={update}
                     />
                     <h3 className={styles.info__price}><span>Total $</span>{(cart_item.drink.price * count).toFixed(2)}</h3>
+                    {update&&<p className={styles.not_saved}>Cambios sin guardar</p>}
                 </div>
             </div>
             <div className={styles.actions}>
