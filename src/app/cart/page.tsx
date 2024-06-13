@@ -45,7 +45,6 @@ export default function Page(){
         if(cart.every(e => e.edited==false)){
             setPay(true)
         }
-        console.log("GUARDE LOS CAMBIOS ANTES DE REALIZAR EL PAGO")
     }
     
     return(
@@ -54,6 +53,7 @@ export default function Page(){
                 pay?(
                     <ConfirmSale
                         cart={cart}
+                        setCart={setCart}
                         setPay={setPay}
                     />
                 ): null
@@ -72,7 +72,7 @@ export default function Page(){
                     ))
                 }
             </div>)}
-            {token&&(<div className={styles.pay}>
+            {token&&cart.length!=0&&(<div className={styles.pay}>
                 <div className={styles.pay__price}>
                     <p className={styles.pay__price_title}>Precio Total</p>
                     <p className={styles.pay__price_amount}><span>$</span> {total.toFixed(2)}</p>

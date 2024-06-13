@@ -1,12 +1,28 @@
 import { Drink } from '@/models/drink'
 import styles from './confirm_sale.module.css'
+import { QueryClient, useMutation } from '@tanstack/react-query'
+import { createSale } from '@/api/sale'
 
 interface Props{
     cart:Array<{id:number, drink:Drink, quantity:number}>
+    setCart: (val:[]) => void
     setPay: (pay:boolean)=>void
 }
 
-export const ConfirmSale = ({cart, setPay}:Props) => {
+export const ConfirmSale = ({cart, setCart, setPay}:Props) => {
+    const queryClient = new QueryClient()
+    const {mutate} = useMutation({
+        mutationKey: ['sale'],
+        mutationFn: createSale,
+        onSuccess: ()=>{
+            queryClient.refetchQueries({queryKey:['cartItems']})
+            setPay(false)
+            setCart([])
+        }
+    })
+    const makeSale = ()=>{
+        mutate()
+    }
     return (
         <div className={styles.modal}>
             <div className='container'>
@@ -38,7 +54,7 @@ export const ConfirmSale = ({cart, setPay}:Props) => {
                     </div>
                     <div className={styles.modal__content__buttons}>
                         <button onClick={() => setPay(false)} className={styles.buttons__cancel}>Cancelar</button>
-                        <button className={styles.buttons__accept}>Aceptar</button>
+                        <button onClick={makeSale} className={styles.buttons__accept}>Aceptar</button>
                     </div>
                 </div>
             </div>
