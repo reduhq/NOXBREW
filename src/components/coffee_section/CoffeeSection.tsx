@@ -3,16 +3,24 @@
 import { useQuery } from '@tanstack/react-query'
 import { Product_card } from '../product_card/Product_card'
 import styles from './coffee_section.module.css'
-import coffee_data from '@/data/data.json'
+// import coffee_data from '@/data/data.json'
 import { useEffect, useState } from 'react'
 import { getAllPrivateDrinks, getAllPublicDrinks } from '@/api/drink'
 import { Drink } from '@/models/drink'
 import { useAuthStore } from '@/store/auth'
+import { getAllDrinkTypes } from '@/api/drinkType'
+import { DrinkType } from '@/models/drinkTypes'
 
 export const CoffeeSection = () => {
     const {token, setToken} = useAuthStore()
     const [category, setCategory] = useState("")
     const[drinks, setDrinks] = useState<Drink[]>([])
+    const [drinkType, setDrinkType] = useState<Array<DrinkType>>([])
+
+    const {data:drinkTypesData} = useQuery({
+        queryKey: ['drinktypes'],
+        queryFn: getAllDrinkTypes
+    })
 
     const {data:publicDrinks} = useQuery({
         queryKey: ['publicDrinks'],
@@ -41,14 +49,22 @@ export const CoffeeSection = () => {
         setDrinks(privateDrinks?.data)
         }, [token, publicDrinks, privateDrinks])
 
+    useEffect(()=>{
+        if(drinkTypesData){
+            setDrinkType(drinkTypesData.data)
+        }
+    }, [drinkTypesData])
+
+    console.log(drinkType)
+
     return (
         <section>
             {/* categories */}
             <div className={`${styles.categories}`}>
             <h3 key={""} onClick={() => setCategory("")} className={category==""?styles['categories--active']:"" }>Todo</h3>
             {
-                Object.keys(coffee_data).map(key =>(
-                <h3 key={key} onClick={() => setCategory(key)} className={category==key?styles['categories--active']:""}>{key}</h3>
+                drinkType.map(d =>(
+                    <h3 key={d.id} onClick={() => setCategory(d.name)} className={category==d.name?styles['categories--active']:""}>{d.name}</h3>
                 ))
             }
             </div>
