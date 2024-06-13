@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query'
 import { getAllSales } from '@/api/sale'
 import { useEffect, useState } from 'react'
 import { Sale } from '@/models/sale'
+import { useAuthStore } from '@/store/auth'
+import Link from 'next/link'
 
 // const history = [
 //     {
@@ -47,10 +49,12 @@ import { Sale } from '@/models/sale'
 // ]
 
 export default function Page(){
-    const [sales, setSales] = useState<Array<Sale>|null>(null)
+    const {token} = useAuthStore()
+    const [sales, setSales] = useState<Array<Sale>>([])
     const {data} = useQuery({
         queryKey:['sales_history'],
-        queryFn: getAllSales
+        queryFn: getAllSales,
+        enabled: !!token
     })
 
     useEffect(()=>{
@@ -62,13 +66,19 @@ export default function Page(){
         <div className={`container ${styles.history_page}`}>
             <i className="fa-brands fa-facebook"></i>
             <h1 className={styles.history_page__title}>historial de pedidos</h1>
-            {sales&&(
+            {token&&sales&&(
                 sales.map(s =>(
                     <HistoryItem
+                        key={s.id}
                         sale={s}
                     />
                 ))
                 )
+            }
+            
+            {token&&sales.length==0?<p className={styles.no_favs}>Aún no has realizado ninguna compra</p>:null}
+            {
+                !token&&<p className={styles.auth}><Link href={'/login'}>Inicia sesión</Link> para ver tu historial de pedidos</p>
             }
         </div>
     )

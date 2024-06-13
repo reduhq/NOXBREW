@@ -6,3 +6,19 @@
     text-align: center;
     margin-bottom: .5rem;
 }
+
+
+.auth{
+    text-align: center;
+    color: #fffa;
+}
+
+.auth a{
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.no_favs{
+    text-align: center;
+    color: #fffa;
+}
