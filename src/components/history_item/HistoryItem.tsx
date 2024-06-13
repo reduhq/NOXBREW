@@ -48,7 +48,7 @@ export default function HistoryItem({sale}:Props){
                 </div>
                 <div className={styles.header__total}>
                     <h2>Monto Total</h2>
-                    <p>$ {calculateTotal().toString()}</p>
+                    <p>$ {calculateTotal().toFixed(2).toString()}</p>
                 </div>
             </div>
             <div className={styles.item__products}>
