@@ -13,7 +13,7 @@ import { DrinkType } from '@/models/drinkTypes'
 
 export const CoffeeSection = () => {
     const {token, setToken} = useAuthStore()
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("todo")
     const[drinks, setDrinks] = useState<Drink[]>([])
     const [drinkType, setDrinkType] = useState<Array<DrinkType>>([])
 
@@ -23,16 +23,17 @@ export const CoffeeSection = () => {
     })
 
     const {data:publicDrinks} = useQuery({
-        queryKey: ['publicDrinks'],
-        queryFn: getAllPublicDrinks,
+        queryKey: ['publicDrinks', category],
+        queryFn: () => getAllPublicDrinks(category),
         enabled: !token
     })
     const {data:privateDrinks, isError} = useQuery({
-        queryKey:['privateDrinks'],
-        queryFn: getAllPrivateDrinks,
+        queryKey:['privateDrinks', category],
+        queryFn: () => getAllPrivateDrinks(category),
         retry: 0,
         enabled: !!token
     })
+
     
     useEffect(()=>{
         if(!token){
@@ -55,13 +56,11 @@ export const CoffeeSection = () => {
         }
     }, [drinkTypesData])
 
-    console.log(drinkType)
-
     return (
         <section>
             {/* categories */}
             <div className={`${styles.categories}`}>
-            <h3 key={""} onClick={() => setCategory("")} className={category==""?styles['categories--active']:"" }>Todo</h3>
+            <h3 key={"todo"} onClick={() => setCategory("todo")} className={category=="todo"?styles['categories--active']:"" }>Todo</h3>
             {
                 drinkType.map(d =>(
                     <h3 key={d.id} onClick={() => setCategory(d.name)} className={category==d.name?styles['categories--active']:""}>{d.name}</h3>
