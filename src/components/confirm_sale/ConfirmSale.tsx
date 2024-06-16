@@ -2,6 +2,7 @@ import { Drink } from '@/models/drink'
 import styles from './confirm_sale.module.css'
 import { QueryClient, useMutation } from '@tanstack/react-query'
 import { createSale } from '@/api/sale'
+import { toastSuccess } from '@/libs/toast'
 
 interface Props{
     cart:Array<{id:number, drink:Drink, quantity:number}>
@@ -18,6 +19,7 @@ export const ConfirmSale = ({cart, setCart, setPay}:Props) => {
             queryClient.refetchQueries({queryKey:['cartItems']})
             setPay(false)
             setCart([])
+            toastSuccess("Pedido realizado exitosamente")
         }
     })
     const makeSale = ()=>{

@@ -6,6 +6,7 @@ import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 import { useAuthStore } from "@/store/auth"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createFavorite, deleteFavorite } from "@/api/favorite"
+import { toastError } from "@/libs/toast"
 
 interface Props{
     drink_id:number
@@ -45,7 +46,7 @@ export const Product_card = ({drink_id, product_name, price, image, description,
 
     const favHandler = (flag:boolean) =>{
         if(!token) {
-            console.log("NO AUTORIZADO")
+            toastError('Inicia sesión para agregar a favoritos')
             return
         }
         if(flag){

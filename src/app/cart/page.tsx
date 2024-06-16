@@ -10,6 +10,7 @@ import { Drink } from '@/models/drink'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCart } from '@/api/cart'
 import { ConfirmSale } from '@/components/confirm_sale/ConfirmSale'
+import { toastError } from '@/libs/toast'
 
 export default function Page(){
     const [pay, setPay] = useState(false)
@@ -44,7 +45,9 @@ export default function Page(){
     const payHandler = ()=>{
         if(cart.every(e => e.edited==false)){
             setPay(true)
+            return
         }
+        toastError("Guarda todos los cambios para realizar tu pedido")
     }
     
     return(

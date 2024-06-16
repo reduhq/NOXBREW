@@ -17,6 +17,8 @@ import { getDrinkByName } from "@/api/drink";
 import { useAuthStore } from "@/store/auth";
 import { addCart } from "@/api/cart";
 import { cartCreate } from "@/models/cart";
+import { toastSuccess } from "@/libs/toast";
+import { redirect } from "next/navigation";
 
 interface coffee_model{
     id:number
@@ -38,11 +40,11 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
         queryFn: () => getDrinkByName(params.coffee_name)
     })
 
-    const {mutate} = useMutation({
+    const {mutate, isSuccess} = useMutation({
         mutationKey: ["cart", coffee?.id],
         mutationFn: (createCart:cartCreate) => addCart(createCart),
         onSuccess:()=>{
-            console.log("SIUUUUUUUUU")
+            toastSuccess("1 Item agregado al carrito")
         }
     })
 
@@ -60,6 +62,10 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
         if(coffee){
             mutate({drink_id:coffee.id, quantity:count})
         }
+    }
+
+    if(isSuccess){
+        return redirect('/')
     }
     
     return(

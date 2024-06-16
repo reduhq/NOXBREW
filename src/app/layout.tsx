@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { SecondaryNavbar } from "@/components/secondary_navbar/SecondaryNavbar";
 import { Footer } from "@/components/footer/Footer";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider";
+import { Toaster } from "react-hot-toast";
 // import { relative } from "path";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,10 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <body className={poppins.className}>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+          />
           <Navbar/> 
           <SecondaryNavbar/>
           {children}

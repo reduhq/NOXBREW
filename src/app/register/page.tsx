@@ -6,11 +6,16 @@ import styles from './register.module.css'
 import { useMutation } from "@tanstack/react-query";
 import { createClient } from "@/api/client";
 import { ClientCreate } from "@/models/client";
+import { toastError } from "@/libs/toast";
+import { AxiosError } from "axios";
 
 
 export default function Page() {
     const {mutate, isSuccess} = useMutation({
-        mutationFn: createClient
+        mutationFn: createClient,
+        onError: (error:AxiosError)=>{
+            toastError(error.response?.data as string)
+        }
     })
     const registerHandler = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()

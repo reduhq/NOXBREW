@@ -6,6 +6,9 @@ import styles from './login.module.css'
 import { useMutation } from '@tanstack/react-query'
 import { loginRequest } from '@/api/auth'
 import { useAuthStore } from '@/store/auth'
+import toast from 'react-hot-toast'
+import { toastError } from '@/libs/toast'
+import { AxiosError } from 'axios'
 
 export default function Page(){
     const {setToken} = useAuthStore()
@@ -14,9 +17,9 @@ export default function Page(){
         onSuccess:(data)=>{
             setToken(data.data.access_token)
         },
-        onError:(error)=>{
-            console.log(error)
-            console.log("PUTAAAAAAAAAA ERRORRRRRRRRRRRRRRRRRRRRRR")
+        onError:(error:AxiosError)=>{
+            // console.log(error)
+            toastError(error.response?.data as string)
         }
     })
     const loginHandler = (e:React.FormEvent<HTMLFormElement>)=>{
