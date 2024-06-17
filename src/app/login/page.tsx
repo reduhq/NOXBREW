@@ -37,11 +37,11 @@ export default function Page(){
             <form onSubmit={loginHandler}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder='Tu Username'/>
+                    <input type="text" name="username" id="username" placeholder='Tu Username' required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder='Tu Password'/>
+                    <input type="password" name="password" id="password" placeholder='Tu Password' required/>
                 </div>
                 <button type="submit">Iniciar sesión</button>
                 <Link href={"/register"} className={styles.link}>No tienes cuenta?</Link>
