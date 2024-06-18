@@ -41,24 +41,24 @@ export default function Page() {
                 <div className="_2x1">
                     <div>
                         <label htmlFor="_name">Nombre</label>
-                        <input type="text" name="_name" id="_name" placeholder="Tu Nombre"/>
+                        <input type="text" name="_name" id="_name" placeholder="Tu Nombre" required/>
                     </div>
                     <div>
                         <label htmlFor="lastname">Apellido</label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Tu Apellido"/>
+                        <input type="text" name="lastname" id="lastname" placeholder="Tu Apellido" required/>
                     </div>
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Tu email"/>
+                    <input type="email" name="email" id="email" placeholder="Tu email" required/>
                 </div>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Tu Username"/>
+                    <input type="text" name="username" id="username" placeholder="Tu Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Tu password"/>
+                    <input type="password" name="password" id="password" placeholder="Tu password" required/>
                 </div>
                 <button type="submit">Crear cuenta</button>
                 <Link href={"/login"} className={styles.link}>Ya tienes cuenta?</Link>
