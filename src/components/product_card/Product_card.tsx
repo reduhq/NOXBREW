@@ -22,7 +22,7 @@ export const Product_card = ({drink_id, product_name, price, image, description,
     const {token} = useAuthStore()
     const [fav, setFav] = useState(!!favorite)
 
-    const {mutate:addFavorite} = useMutation({
+    const {mutate:addFavorite, isPending:addFavoritePending} = useMutation({
         mutationKey:['favorite', product_name],
         mutationFn: () => createFavorite(drink_id),
         onSuccess: ()=>{
@@ -33,7 +33,7 @@ export const Product_card = ({drink_id, product_name, price, image, description,
         }
     })
 
-    const {mutate:removeFavorite} = useMutation({
+    const {mutate:removeFavorite, isPending:removeFavoritePending} = useMutation({
         mutationKey: ['favorite', product_name],
         mutationFn: () => deleteFavorite(favorite as number),
         onSuccess: ()=>{
@@ -47,6 +47,9 @@ export const Product_card = ({drink_id, product_name, price, image, description,
     const favHandler = (flag:boolean) =>{
         if(!token) {
             toastError('Inicia sesión para agregar a favoritos')
+            return
+        }
+        if(addFavoritePending || removeFavoritePending){
             return
         }
         if(flag){
