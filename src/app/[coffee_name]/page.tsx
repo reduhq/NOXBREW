@@ -17,7 +17,7 @@ import { getDrinkByName } from "@/api/drink";
 import { useAuthStore } from "@/store/auth";
 import { addCart } from "@/api/cart";
 import { cartCreate } from "@/models/cart";
-import { toastSuccess } from "@/libs/toast";
+import { toastError, toastSuccess } from "@/libs/toast";
 import { redirect } from "next/navigation";
 
 interface coffee_model{
@@ -56,7 +56,7 @@ export default function Page({ params }: { params: { coffee_name: string } }) {
 
     const addToCart = () =>{
         if(!token){
-            console.log("NO AUTORIZADO")
+            toastError('Inicia sesión para agregar items a tu carrito')
             return
         }
         if(coffee){

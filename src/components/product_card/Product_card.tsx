@@ -39,7 +39,7 @@ export const Product_card = ({drink_id, product_name, price, image, description,
         onSuccess: ()=>{
             setFav(false)
             // queryClient.invalidateQueries({queryKey: ['favorite_drinks']})
-            // queryClient.invalidateQueries({queryKey: ['privateDrinks']})
+            queryClient.invalidateQueries({queryKey: ['privateDrinks']})
             // queryClient.invalidateQueries({queryKey: ['favorite', product_name]})
         }
     })

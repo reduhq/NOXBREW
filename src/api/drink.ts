@@ -11,3 +11,11 @@ export const getAllPrivateDrinks = async(category:string)=>{
 export const getDrinkByName = async(coffee_name:string)=>{
     return await api_v1.get(`/drink/${coffee_name}`)
 }
+
+export const getPublicSearchedDrinks = async(searchStr:string)=>{
+    return await api_v1.get(`/drink/public/search/${searchStr}`)
+}
+
+export const getPrivateSearchedDrinks = async(searchStr:string)=>{
+    return await api_v1.get(`/drink/private/search/${searchStr}`)
+}

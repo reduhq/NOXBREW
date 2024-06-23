@@ -1,0 +1,10 @@
+
+.searchStr{
+    color: #fffa;
+    margin: .5rem 0;
+}
+
+.section{
+    display: grid;
+    gap: .5rem;
+}
