@@ -53,9 +53,11 @@ export const Product_card = ({drink_id, product_name, price, image, description,
             return
         }
         if(flag){
+            if(favorite) return
             addFavorite()
             return 
         }
+        if(!favorite) return
         removeFavorite()
     }
     useEffect(()=>{
